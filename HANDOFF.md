@@ -8,7 +8,11 @@ The first local prototype has been implemented. See `DESIGN.md` for the current 
 
 The user requested a new name and English throughout the project for a broader audience and clearer agent instructions. All five files are now in English. The user confirmed Onward (`onward`) after rejecting the provisional Roomway name. Onward expresses continued progress from the first MVP through later feature work and maintenance. It replaces the initial plugin identifier `minimal-plugin` and skill identifier `minimal-work`. Both the plugin and skill now use `onward`.
 
-Installation, marketplace registration, changes to existing projects, Git initialization, and deployment have not been performed. Actual behavioral effects and host invocation behavior remain unverified. The next step is to observe the skill on a small real change.
+The initial prototype was committed and pushed to `https://github.com/ardenspace/onward.git` on `main` as `1f91325`. Installation, marketplace registration, changes to existing projects, and runtime deployment have not been performed.
+
+Following review, the user approved a narrow stopping-rule improvement: stop and reassess when recurring root causes or an expanding solution make no progress toward completion criteria; require new evidence for a concrete next attempt, or report the unresolved scope and necessary decisions. This does not impose a fixed round cap or guarantee a runtime limit.
+
+Actual behavioral effects and host invocation behavior remain unverified. The next step is to observe the skill on a small real change. In the first shared-foundation trial, verify reviewer startup, the context actually supplied, and independent derivation of checks. Installed explicit invocation and automatic-selection blocking also need behavioral verification; no review orchestration has been added.
 
 The following sections preserve the agreements and evidence that led to the prototype. Historical descriptions of files not yet existing refer to the state before implementation.
 

@@ -52,6 +52,8 @@ Preserve implementation context and avoid fixed review layers. Check fixes again
 
 Finish when requirements and necessary checks are satisfied and material risks introduced by the change are resolved. If only review tooling or supporting documents keep expanding, assess whether that work is necessary to establish a current requirement. Defer optional work; report unresolved mandatory checks as incomplete. No fixed round count or severity taxonomy is defined.
 
+If failures with the same root cause recur, or the attempted solution keeps expanding, without progress toward completion criteria, stop that loop and reassess. Resume it only with a concrete next attempt supported by new evidence; otherwise report unresolved scope and necessary decisions. Work independent of that outcome may continue. This behavioral stopping rule does not guarantee a runtime limit.
+
 ## Continuity
 
 Use an existing handoff location before creating a new one. If none is suitable, create a single short note with completed scope, next action, blockers or decisions, and verification evidence tied to the checked state. No fixed filename or schema is required.
@@ -62,6 +64,7 @@ Reconcile notes with the actual state when resuming. Avoid repeating valid compl
 
 - Small UI edit: reuse existing elements and finish appropriate checks without unnecessary questions, documents, or additional agents when criteria are clear.
 - Shared foundation: surface unresolved costly choices before introduction and independently detect a seeded boundary defect before propagation. Record a missed defect as a failed trial.
+- In that shared-foundation trial, also check how the reviewer is started, which context it actually receives, and whether it derives checks before consulting existing tests. A configured role or structural validation alone is insufficient evidence of independence.
 - Resumption: recover completed scope and next steps, recheck changed evidence, and preserve the distinction between complete and unverified.
 - Settings addition: surface only unresolved ownership choices that change the outcome; do not revisit existing agreements.
 - Second change after the MVP: observe duplicate edits and omissions when modifying a shared modal or theme.
