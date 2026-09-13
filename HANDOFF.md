@@ -4,11 +4,11 @@ Written: 2026-09-13. Read this file first. Do not resume by launching the wellbe
 
 ## Current state
 
-The first local prototype has been implemented. See `DESIGN.md` for the current design and usage example, and `skills/onward/SKILL.md` for the behavioral instructions. The plugin manifest and explicit invocation policy (`allow_implicit_invocation: false`) are present.
+The first local prototype has been implemented. See `DESIGN.md` for the current design and usage example, and `plugins/onward/skills/onward/SKILL.md` for the behavioral instructions. The plugin manifest and explicit invocation policy (`allow_implicit_invocation: false`) are present.
 
-The user requested a new name and English throughout the project for a broader audience and clearer agent instructions. All five files are now in English. The user confirmed Onward (`onward`) after rejecting the provisional Roomway name. Onward expresses continued progress from the first MVP through later feature work and maintenance. It replaces the initial plugin identifier `minimal-plugin` and skill identifier `minimal-work`. Both the plugin and skill now use `onward`.
+The user requested a new name and English throughout the project for a broader audience and clearer agent instructions. The project instructions and documentation are in English. The user confirmed Onward (`onward`) after rejecting the provisional Roomway name. Onward expresses continued progress from the first MVP through later feature work and maintenance. It replaces the initial plugin identifier `minimal-plugin` and skill identifier `minimal-work`. Both the plugin and skill now use `onward`.
 
-The initial prototype was committed and pushed to `https://github.com/ardenspace/onward.git` on `main` as `1f91325`. Installation, marketplace registration, changes to existing projects, and runtime deployment have not been performed.
+The initial prototype was committed and pushed to `https://github.com/ardenspace/onward.git` on `main` as `1f91325`. The user subsequently authorized GitHub distribution and local installation. Packaging now uses `.agents/plugins/marketplace.json` and `plugins/onward/`; see `README.md` for installation commands. Automatic application remains disabled for the first dogfooding trial. Existing projects remain unchanged, and the plugin has no runtime service to deploy.
 
 Following review, the user approved a narrow stopping-rule improvement: stop and reassess when recurring root causes or an expanding solution make no progress toward completion criteria; require new evidence for a concrete next attempt, or report the unresolved scope and necessary decisions. This does not impose a fixed round cap or guarantee a runtime limit.
 

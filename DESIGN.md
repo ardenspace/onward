@@ -6,15 +6,15 @@ Status: first implementation completed on 2026-09-13 after agreement on directio
 
 Help build an MVP that remains fast to change and maintain. Bring a small set of useful judgments into ordinary development: product intent, costly choices, shared implementation, independent review, and continuity across sessions.
 
-The user requests work rather than managing a pipeline. Existing wellbegun, KBO, and ardenspace projects remain reference material. Copying their implementations, migration, replacement, installation, marketplace registration, and deployment are outside this prototype's scope.
+The user requests work rather than managing a pipeline. Existing wellbegun, KBO, and ardenspace projects remain reference material. Copying their implementations, migration, and replacement remain outside scope. The user has authorized GitHub distribution and installation of Onward for the first dogfooding trial.
 
 ## Implementation
 
-The prototype contains one behavioral skill, packaged locally for Codex:
+The repository distributes one behavioral skill for Codex through `.agents/plugins/marketplace.json`. Its plugin files are:
 
-- `.codex-plugin/plugin.json`
-- `skills/onward/SKILL.md`
-- `skills/onward/agents/openai.yaml`, with `allow_implicit_invocation: false`
+- `plugins/onward/.codex-plugin/plugin.json`
+- `plugins/onward/skills/onward/SKILL.md`
+- `plugins/onward/skills/onward/agents/openai.yaml`, with `allow_implicit_invocation: false`
 
 Apply only to a task the user explicitly selects and its follow-up fixes or resumption. When joining a project in progress, read the relevant product and code evidence and continue from its current state.
 
@@ -71,11 +71,13 @@ Reconcile notes with the actual state when resuming. Avoid repeating valid compl
 
 Possible comparisons are no plugin, the existing wellbegun plugin, and this prototype, using equivalent tasks and evaluation criteria in separate contexts. Begin with small trials. Measure elapsed time, added input bytes, calls, questions, document writes, repeated checks, and actual defects found. Separate task cost from plugin overhead. Unmeasured tokens and monetary cost remain unknown. This document does not authorize comparison runs or additional agents.
 
-## Local use and verification
+## Installation and verification
+
+See [README.md](README.md) for Git marketplace installation and explicit invocation. Automatic application remains disabled for the first dogfooding trial.
 
 To test the instructions without installation:
 
-> Read `skills/onward/SKILL.md` from this plugin directory and apply it to this task. In [target project path], implement [small change request].
+> Read `plugins/onward/skills/onward/SKILL.md` from this repository and apply it to this task. In [target project path], implement [small change request].
 
 This tests the instruction body. In an installed, discoverable environment, the intended explicit invocation is `$onward`. Creating these files does not register that command in the current session.
 

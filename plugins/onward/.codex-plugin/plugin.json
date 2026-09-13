@@ -2,6 +2,7 @@
   "name": "onward",
   "version": "0.1.0",
   "description": "An explicit development skill for product intent, costly decisions, reuse, and independent review.",
+  "repository": "https://github.com/ardenspace/onward",
   "author": { "name": "arden" },
   "skills": "./skills/",
   "interface": {
