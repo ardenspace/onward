@@ -1,0 +1,16 @@
+{
+  "name": "onward",
+  "version": "0.1.0",
+  "description": "An explicit development skill for product intent, costly decisions, reuse, and independent review.",
+  "author": { "name": "arden" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Onward",
+    "shortDescription": "Build with the next change in mind.",
+    "longDescription": "One explicitly invoked skill helps carry out development work with clear product criteria, deliberate costly choices, reuse, and independent review at consequential boundaries. Behavioral benefits remain unverified in this local prototype.",
+    "developerName": "arden",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": ["Use $onward to carry out the current development task."]
+  }
+}
