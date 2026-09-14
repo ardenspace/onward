@@ -1,5 +1,0 @@
-interface:
-  display_name: "Onward"
-  short_description: "Build with product intent, reuse, and independent judgment"
-policy:
-  allow_implicit_invocation: false
