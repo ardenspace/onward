@@ -1,0 +1,5 @@
+interface:
+  display_name: "Onward plan"
+  short_description: "Check a change against the canon: fit, expensive decisions, blast radius, reuse"
+policy:
+  allow_implicit_invocation: false
