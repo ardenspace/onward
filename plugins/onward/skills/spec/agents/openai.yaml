@@ -1,0 +1,5 @@
+interface:
+  display_name: "Onward spec"
+  short_description: "Establish the project canon: one picture, expensive decisions, shared foundations"
+policy:
+  allow_implicit_invocation: false
