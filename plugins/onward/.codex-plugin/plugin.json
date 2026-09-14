@@ -1,17 +1,20 @@
 {
   "name": "onward",
-  "version": "0.1.0",
-  "description": "An explicit development skill for product intent, costly decisions, reuse, and independent review.",
+  "version": "0.2.0",
+  "description": "Build with the next change in mind. Two explicitly invoked skills: spec establishes a project's canon; plan checks a change against it before implementation.",
   "repository": "https://github.com/ardenspace/onward",
-  "author": { "name": "arden" },
+  "author": { "name": "ardenspace" },
   "skills": "./skills/",
   "interface": {
     "displayName": "Onward",
     "shortDescription": "Build with the next change in mind.",
-    "longDescription": "One explicitly invoked skill helps carry out development work with clear product criteria, deliberate costly choices, reuse, and independent review at consequential boundaries. Behavioral benefits remain unverified in this local prototype.",
-    "developerName": "arden",
-    "category": "Productivity",
+    "longDescription": "Two explicitly invoked skills. spec establishes a project's canon once: the product in one picture, the decisions that are expensive to reverse, and where shared foundations live. plan checks each change against that canon before implementation: fit, new expensive decisions, blast radius, and reuse. No runtime, hooks, or review orchestration.",
+    "developerName": "ardenspace",
+    "category": "Developer Tools",
     "capabilities": [],
-    "defaultPrompt": ["Use $onward to carry out the current development task."]
+    "defaultPrompt": [
+      "Use $spec to establish this project's canon.",
+      "Use $plan before implementing: <change request>."
+    ]
   }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "onward",
+  "owner": {
+    "name": "ardenspace",
+    "email": "ardensdevspace@gmail.com"
+  },
+  "description": "A dual Claude Code and Codex marketplace for Onward: spec and plan skills that keep an MVP cheap to change.",
+  "plugins": [
+    {
+      "name": "onward",
+      "source": "./plugins/onward",
+      "description": "Build with the next change in mind: establish a canon, then check each change against it."
+    }
+  ]
+}

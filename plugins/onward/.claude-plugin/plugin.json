@@ -1,0 +1,21 @@
+{
+  "name": "onward",
+  "description": "Build with the next change in mind. Two explicitly invoked skills: spec establishes a project's canon (one picture, expensive decisions, shared foundations); plan checks a change against it before implementation.",
+  "version": "0.2.0",
+  "author": {
+    "name": "ardenspace",
+    "email": "ardensdevspace@gmail.com"
+  },
+  "homepage": "https://github.com/ardenspace/onward",
+  "repository": "https://github.com/ardenspace/onward",
+  "license": "MIT",
+  "keywords": [
+    "mvp",
+    "maintainability",
+    "reversibility",
+    "one-way-door",
+    "spec",
+    "plan",
+    "reuse"
+  ]
+}
