@@ -54,8 +54,13 @@ which:
 Walk the canon's nine areas - data schema, data ownership, account and auth
 model, multi-tenancy, public contracts, storage, platform, billing unit,
 shared foundations - and list only those this change would newly create or
-change. For each, use default plus reversal cost and get confirmation before
-moving on. If none, say "no new expensive decisions".
+change. If none, say "no new expensive decisions".
+
+Otherwise list the areas in one line, then ask about them one per message,
+starting with the one the others depend on (ownership or tenancy before
+schema, schema before contracts). Each message is one default plus reversal
+cost. After an answer, derive the next default from it. Put two decisions in
+the same message only when neither default depends on the other's answer.
 
 ## Step 3: Blast radius
 
