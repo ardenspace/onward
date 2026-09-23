@@ -1,6 +1,7 @@
 ---
 name: plan
 description: Before implementing a change, check it against the project's canon in docs/onward.md - classify the request, surface expensive decisions it introduces, trace its blast radius, and name what to reuse. Use only when the user explicitly invokes this skill with a change request; never apply it automatically.
+disable-model-invocation: true
 ---
 
 # onward:plan - check a change before building it
