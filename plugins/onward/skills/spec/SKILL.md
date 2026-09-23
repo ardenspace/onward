@@ -58,9 +58,12 @@ below:
 - `CLAUDE.md`, `AGENTS.md`, `README.md`, existing ADRs or design notes -
   decisions already made in prose.
 
-Note what you found. Each finding becomes a `decided` row or a shared
-foundation entry in Act 3 without a question. A new project with no code
-skips this act.
+Note what you found. A finding stated in prose (README, PRD, ADR, design
+notes) becomes a `decided` row or a shared foundation entry without a
+question. A finding only the code shows may have been decided by accident:
+in Act 2, show all of those in one message as proposed `decided` rows and ask
+which, if any, were not deliberate. A row the user flags becomes `decide now`.
+A new project with no code skips this act.
 
 ## Act 1: The world
 
