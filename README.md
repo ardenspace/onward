@@ -48,7 +48,7 @@ It reads the code first and asks only what the code cannot answer, one question 
 
 **The world.** What the product is in one picture, not a feature list ("a chat room where an assistant messages you"). Who it serves and in which moment. Where two invented future features would land inside that picture, which is the test of whether the picture holds. What stays out on purpose. Which priority wins when good options conflict.
 
-**Expensive decisions.** Nine areas that are cheap to choose now and expensive to reverse later: data schema, data ownership, account model, multi-tenancy, public contracts, storage, platform, billing unit, shared foundations. Each is marked decided, not applicable, deferred with a trigger, or decide now. Only the last kind gets a question, in the form of a default plus one line of reversal cost:
+**Expensive decisions.** Nine areas that are cheap to choose now and expensive to reverse later: data ownership, account model, multi-tenancy, data schema, public contracts, storage, platform, billing unit, shared foundations. Each is marked decided, not applicable, deferred with a trigger, or decide now. Only the last kind gets a question, in the form of a default plus one line of reversal cost:
 
 > Settings will live on the device, since the product is personal and login is optional. If account sync is ever needed, that is one migration. OK?
 
@@ -61,7 +61,7 @@ The result is one page, `docs/onward.md`, plus one line in `CLAUDE.md` or `AGENT
 Given a change request, it reads the canon and answers four things in chat:
 
 1. **Class.** Too small to plan, fits the world, or conflicts with it. A conflict stops and asks whether the canon should change.
-2. **Expensive decisions** this change newly introduces or alters. Using an existing decision is free; changing one gets the default-plus-reversal-cost question.
+2. **Expensive decisions** this change newly introduces or alters. Using an existing decision is free; changing one gets the default-plus-reversal-cost question, and the answer is written back into the canon so the next plan does not ask again.
 3. **Blast radius.** For each thing modified, the consumers that must change with it, found by search and named individually.
 4. **Reuse and order.** Which shared elements to use, what to build local, and that a new shared foundation lands before its first consumer.
 
