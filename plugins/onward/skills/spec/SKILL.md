@@ -42,7 +42,9 @@ choices, silent at the cheap ones.
 
 If `docs/onward.md` exists, read it and resume: skip every section that is
 already filled, re-ask anything marked `open`, and continue from the first
-gap. Do not start over.
+gap. Do not start over. Before skipping the shared foundations table, check
+that each location it points to still exists; fix a moved path from the code
+and report a missing one as `open` instead of guessing a replacement.
 
 Otherwise, if the project has code, find and read what answers the questions
 below:
@@ -150,6 +152,9 @@ Statuses:
 - **deferred** - can stay open without spreading into code yet. Record with a
   concrete trigger for revisiting: "before the first paid user", "at the
   first multi-device request".
+- **open** - a `decide now` item that was asked but not answered. Record it
+  with `-` as the choice and repeat the question under `## Open`; it is
+  re-asked on the next run and never filled in by the agent.
 
 First send the Act 0 confirmation of code-only `decided` rows, if any; a
 row the user flags becomes `decide now`. Then ask the `decide now` items one
@@ -228,6 +233,7 @@ task. Do not resolve it here.
 | data ownership | decided | device-local | one migration to account sync | first multi-device request |
 | billing unit | deferred | - | - | before first paid user |
 | multi-tenancy | n/a | personal product | - | - |
+| data schema | open | - | - | next spec run |
 
 When a decision changes, keep the row and add `was: <old> (<date>, <reason>)`
 in the choice cell. Do not delete history.

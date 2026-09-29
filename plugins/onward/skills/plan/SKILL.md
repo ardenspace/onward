@@ -42,8 +42,8 @@ Read the canon's world picture, "how new things enter", "what stays out",
 and the decisions table. Place the request in one of three classes and say
 which:
 
-- **Too small.** Copy, a color that already uses tokens, a private helper, a
-  bug fix inside one function. Say "no plan needed" and hand back. Do not run
+- **Too small.** Copy, a style change that uses existing token values, a
+  private helper, a bug fix inside one function. Say "no plan needed" and hand back. Do not run
   the remaining steps.
 - **Fits.** The change lands inside the frame and uses existing decisions.
   Continue to step 2.
@@ -60,7 +60,9 @@ which:
 Walk the canon's nine areas - data ownership, account and auth model,
 multi-tenancy, data schema, public contracts, storage, platform, billing unit,
 shared foundations - and list only those this change would newly create or
-change. If none, say "no new expensive decisions".
+change. An area the canon marks `open` or `deferred` counts as new if this
+change would start relying on it. If none, say "no new expensive
+decisions".
 
 Otherwise list the areas in one line, then ask about them one per message,
 starting with the one the others depend on (ownership or tenancy before
