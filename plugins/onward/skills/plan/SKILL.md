@@ -29,6 +29,12 @@ works; this skill does not implement, review, or verify.
 - **Chat, not files.** Write the note in the conversation. Save it to a file
   only when the work will span sessions, and then in the project's existing
   notes location.
+- **Settled things go back into the canon.** A decision confirmed here, and a
+  new or promoted shared element, is written into `docs/onward.md` - a row in
+  the decisions table or the shared foundations table - so the next plan
+  reads it instead of asking again. A changed row keeps its old value as
+  `was: <old> (<date>, <reason>)`. With no canon, list these in the note for
+  `onward:spec` to record instead.
 
 ## Step 1: Classify the request
 
@@ -36,8 +42,8 @@ Read the canon's world picture, "how new things enter", "what stays out",
 and the decisions table. Place the request in one of three classes and say
 which:
 
-- **Too small.** Copy, a color that already uses tokens, a private helper, a
-  bug fix inside one function. Say "no plan needed" and hand back. Do not run
+- **Too small.** Copy, a style change that uses existing token values, a
+  private helper, a bug fix inside one function. Say "no plan needed" and hand back. Do not run
   the remaining steps.
 - **Fits.** The change lands inside the frame and uses existing decisions.
   Continue to step 2.
@@ -51,16 +57,19 @@ which:
 
 ## Step 2: Expensive decisions this change introduces or alters
 
-Walk the canon's nine areas - data schema, data ownership, account and auth
-model, multi-tenancy, public contracts, storage, platform, billing unit,
+Walk the canon's nine areas - data ownership, account and auth model,
+multi-tenancy, data schema, public contracts, storage, platform, billing unit,
 shared foundations - and list only those this change would newly create or
-change. If none, say "no new expensive decisions".
+change. An area the canon marks `open` or `deferred` counts as new if this
+change would start relying on it. If none, say "no new expensive
+decisions".
 
 Otherwise list the areas in one line, then ask about them one per message,
 starting with the one the others depend on (ownership or tenancy before
 schema, schema before contracts). Each message is one default plus reversal
 cost. After an answer, derive the next default from it. Put two decisions in
 the same message only when neither default depends on the other's answer.
+Record each confirmed decision in the canon's decisions table.
 
 ## Step 3: Blast radius
 
@@ -88,6 +97,8 @@ not exist:
   first, then its consumers.
 - Otherwise build it local to this feature and note "promote at second use".
   Similar appearance alone does not justify an abstraction.
+- If this change is that second real use and the user agrees to promote, add
+  the element to the canon's shared foundations table.
 
 If the change creates or modifies a shared foundation, order the work so the
 foundation lands before its first consumer. Consumers built ahead of the
@@ -101,7 +112,7 @@ remember. Shape:
 ```markdown
 **Class:** fits
 
-**Expensive decisions:** none new / <area>: <choice> (reversal: <cost>) - confirmed
+**Expensive decisions:** none new / <area>: <choice> (reversal: <cost>) - confirmed, recorded in canon
 
 **Blast radius:**
 - <thing changed> -> <consumer>, <consumer>, <consumer>

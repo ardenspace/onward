@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Build with the next change in mind. Two explicitly invoked skills: spec establishes a project's canon; plan checks a change against it before implementation.",
   "repository": "https://github.com/ardenspace/onward",
-  "author": { "name": "ardenspace" },
+  "author": { "name": "ardenspace", "email": "ardensdevspace@gmail.com" },
   "skills": "./skills/",
   "interface": {
     "displayName": "Onward",
@@ -13,8 +13,8 @@
     "category": "Developer Tools",
     "capabilities": [],
     "defaultPrompt": [
-      "Use $spec to establish this project's canon.",
-      "Use $plan before implementing: <change request>."
+      "Use $onward:spec to establish this project's canon.",
+      "Use $onward:plan before implementing: <change request>."
     ]
   }
 }

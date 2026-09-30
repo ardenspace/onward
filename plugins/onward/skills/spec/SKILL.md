@@ -30,8 +30,9 @@ choices, silent at the cheap ones.
   ends, the user changes subject - record it as `open` in the file and re-ask
   next time. An unanswered question never becomes an agent decision.
 - **Do not re-ask settled decisions.** A decision already in `docs/onward.md`
-  or clearly expressed by code is recorded, not reopened. Reopen only when the
-  user asks.
+  or stated in existing prose (README, PRD, ADR, design notes) is recorded,
+  not reopened. A decision only the code shows is confirmed once, as Act 0
+  describes, then treated as settled. Reopen only when the user asks.
 - **Do not turn spec into a refactor.** If an expensive area is already
   spread through the code in a way that conflicts with a good choice, record
   the current state and note that changing it is a separate task. Do not fix
@@ -41,7 +42,9 @@ choices, silent at the cheap ones.
 
 If `docs/onward.md` exists, read it and resume: skip every section that is
 already filled, re-ask anything marked `open`, and continue from the first
-gap. Do not start over.
+gap. Do not start over. Before skipping the shared foundations table, check
+that each location it points to still exists; fix a moved path from the code
+and report a missing one as `open` instead of guessing a replacement.
 
 Otherwise, if the project has code, find and read what answers the questions
 below:
@@ -121,14 +124,16 @@ feel question if lens 1 already produced it.
 ## Act 2: Expensive decisions
 
 Walk this list after Act 1, because the world picture is what makes a default
-defensible. For each area, assign one status before asking anything:
+defensible. The rows are in dependency order: ownership and tenancy shape the
+schema, the schema shapes contracts. For each area, assign one status before
+asking anything:
 
 | area | why it is expensive to change later |
 |---|---|
-| data schema | backend, frontend types, migrations and stored data all follow |
 | data ownership | device vs account vs team; changing it creates sync and permission models that did not exist |
 | account and auth model | login required or optional, guests; every screen and API assumes the answer |
 | multi-tenancy | personal vs team vs organization; added later, every query grows a tenant clause |
+| data schema | backend, frontend types, migrations and stored data all follow |
 | public contracts | API shape, URL structure, event formats, files users keep; once something outside depends on it, it is frozen |
 | storage location and kind | local, server, cloud; SQL, document, file; moving means a migration |
 | platform and framework | web, mobile, desktop, runtime; effectively a rewrite |
@@ -137,8 +142,9 @@ defensible. For each area, assign one status before asking anything:
 
 Statuses:
 
-- **decided** - the code or existing notes answer it. Record the choice; ask
-  nothing.
+- **decided** - existing notes answer it: record the choice and ask nothing.
+  If only the code answers it, it goes into the single Act 0 confirmation
+  message below before it is recorded as `decided`.
 - **n/a** - does not apply to this product (a CLI has no multi-tenancy).
   Record with a one-clause reason.
 - **decide now** - the MVP's code will bake this in soon, so leaving it open
@@ -146,16 +152,22 @@ Statuses:
 - **deferred** - can stay open without spreading into code yet. Record with a
   concrete trigger for revisiting: "before the first paid user", "at the
   first multi-device request".
+- **open** - a `decide now` item that was asked but not answered. Record it
+  with `-` as the choice and repeat the question under `## Open`; it is
+  re-asked on the next run and never filled in by the agent.
 
-Then ask only the `decide now` items, one at a time, using default plus
-reversal cost:
+First send the Act 0 confirmation of code-only `decided` rows, if any; a
+row the user flags becomes `decide now`. Then ask the `decide now` items one
+per message, in table order so the ones others depend on come first, using
+default plus reversal cost:
 
 > Settings will live on the device, since the product is personal and login
 > is optional. If account sync is ever needed, that is one migration. OK?
 
-Bundle independent ones into a single confirmation when the world picture
-makes them all obvious. A new project may have five or six `decide now`
-items; that is normal and is the point of this skill.
+After an answer, derive the next default from it. Put two items in the same
+message only when neither default depends on the other's answer. A new
+project may have five or six `decide now` items; that is normal and is the
+point of this skill.
 
 Probes to use inside the relevant areas when the answer looks thin:
 
@@ -221,6 +233,7 @@ task. Do not resolve it here.
 | data ownership | decided | device-local | one migration to account sync | first multi-device request |
 | billing unit | deferred | - | - | before first paid user |
 | multi-tenancy | n/a | personal product | - | - |
+| data schema | open | - | - | next spec run |
 
 When a decision changes, keep the row and add `was: <old> (<date>, <reason>)`
 in the choice cell. Do not delete history.
