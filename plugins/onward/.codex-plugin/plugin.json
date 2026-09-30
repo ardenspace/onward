@@ -13,8 +13,8 @@
     "category": "Developer Tools",
     "capabilities": [],
     "defaultPrompt": [
-      "Use $spec to establish this project's canon.",
-      "Use $plan before implementing: <change request>."
+      "Use $onward:spec to establish this project's canon.",
+      "Use $onward:plan before implementing: <change request>."
     ]
   }
 }

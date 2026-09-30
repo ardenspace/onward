@@ -30,14 +30,14 @@ Establish the canon once per project, or when joining an existing one:
 
 ```text
 /onward:spec          (Claude Code)
-$spec                 (Codex)
+$onward:spec          (Codex)
 ```
 
 Before each change, check it against the canon:
 
 ```text
 /onward:plan Add a theme preview to the settings screen.
-$plan Add a theme preview to the settings screen.
+$onward:plan Add a theme preview to the settings screen.
 ```
 
 Then implement the way you normally do. Onward stops where implementation starts.
