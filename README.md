@@ -48,11 +48,13 @@ It reads the code first and asks only what the code cannot answer, one question 
 
 **The world.** What the product is in one picture, not a feature list ("a chat room where an assistant messages you"). Who it serves and in which moment. Where two invented future features would land inside that picture, which is the test of whether the picture holds. What stays out on purpose. Which priority wins when good options conflict.
 
-**Expensive decisions.** Nine areas that are cheap to choose now and expensive to reverse later: data ownership, account model, multi-tenancy, data schema, public contracts, storage, platform, billing unit, shared foundations. Each is marked decided, not applicable, deferred with a trigger, or decide now. Only the last kind gets a question, in the form of a default plus one line of reversal cost:
+**Expensive decisions.** Nine areas that are cheap to choose now and expensive to reverse later: data ownership, account model, multi-tenancy, data schema, public contracts, storage, platform, billing unit, shared foundations. Each is marked decided, not applicable, deferred with a trigger, or decide now, and records its source: the user, a named document, or an unchecked agent default. Only decide-now items about intent get a question, phrased as a consequence the user can judge without knowing the stack, with a default and one line of reversal cost. Technical choices are not asked; they follow the framework's official docs or ecosystem default and are shown so the user can object:
 
-> Settings will live on the device, since the product is personal and login is optional. If account sync is ever needed, that is one migration. OK?
+> If you switch phones, your settings start over on the new one. Adding sync later is possible but means moving everyone's saved settings once. Is starting over on a new phone fine for now?
 
 **Shared foundations.** Where the tokens, shared components, and global helpers live, as pointers into the code. Planned-shared elements go in the shared place from first use; everything else starts local and is assessed at its second real use.
+
+**Enforced rules.** Lint and CI rules that encode a project convention, each with the problem it prevents in plain words, its source, and when an exception is allowed. A rule nobody can explain stays a warning, because an enforced rule nobody understands gets bypassed without anyone noticing.
 
 The result is one page, `docs/onward.md`, plus one line in `CLAUDE.md` or `AGENTS.md` telling the agent to read it before touching shared code.
 
@@ -61,7 +63,7 @@ The result is one page, `docs/onward.md`, plus one line in `CLAUDE.md` or `AGENT
 Given a change request, it reads the canon and answers five things in chat:
 
 1. **Class.** Too small to plan, fits the world, or conflicts with it. A conflict stops and asks whether the canon should change.
-2. **Expensive decisions** this change newly introduces or alters. Using an existing decision is free; changing one gets the default-plus-reversal-cost question, and the answer is written back into the canon so the next plan does not ask again.
+2. **Expensive decisions** this change newly introduces or alters. Using an existing decision is free; changing one gets the default-plus-reversal-cost question, and the answer is written back into the canon with its source so the next plan does not ask again. A convention the change sets is proposed as a lint rule rather than a note, when its reason can be stated.
 3. **Blast radius.** For each thing modified, the consumers that must change with it, found by search and named individually.
 4. **Reuse and order.** Which shared elements to use, what to build local, and that a new shared foundation lands before its first consumer.
 5. **Done when.** One to three observable completion criteria, fixed before implementation, that the implementer checks once at the end. Where the change touches stored data or other consumers, one of them says those still work.

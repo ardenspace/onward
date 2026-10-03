@@ -22,13 +22,26 @@ choices, silent at the cheap ones.
 - **One question at a time.** Ask the next question only after the previous
   one is answered. Bundle several confirmations into one message only when
   they are independent of each other.
-- **Default plus reversal cost.** When a decision is open, propose one default
-  grounded in the world picture, state in one clause what reversing it later
-  would cost, and ask for confirmation. Lay out alternatives only when the user
-  declines the default or the alternatives are genuinely close.
-- **Never answer for the user.** If a question goes unanswered - the session
-  ends, the user changes subject - record it as `open` in the file and re-ask
-  next time. An unanswered question never becomes an agent decision.
+- **Ask only what the user can answer.** The user may not know this stack.
+  Every open decision is one of two kinds:
+  - *Intent* - what matters, who uses it, what must never be lost, what may
+    break. Ask the user; they are the expert here. Phrase it as a
+    consequence in their world, with no jargon: not "device or account
+    storage?" but "if you switch phones, is it fine that settings reset?"
+  - *Expertise* - which pattern, library, or structure. Do not ask. Follow
+    the framework's official documentation or the ecosystem default, name
+    that source, prefer the more reversible option when sources disagree,
+    and show the choice in one line so the user can object. If no source
+    exists, record it as `agent default`, which means nobody has checked it.
+- **Default plus reversal cost.** When an intent question is open, propose
+  one default grounded in the world picture, state in one clause what
+  reversing it later would cost in the user's terms, and ask for
+  confirmation. Lay out alternatives only when the user declines the default
+  or the alternatives are genuinely close.
+- **Never answer for the user.** If an intent question goes unanswered - the
+  session ends, the user changes subject - record it as `open` in the file
+  and re-ask next time. An unanswered intent question never becomes an agent
+  decision.
 - **Do not re-ask settled decisions.** A decision already in `docs/onward.md`
   or stated in existing prose (README, PRD, ADR, design notes) is recorded,
   not reopened. A decision only the code shows is confirmed once, as Act 0
@@ -58,6 +71,8 @@ below:
 - Auth setup, tenant or workspace concepts, billing code - account model,
   multi-tenancy, billing unit.
 - Public API routes, exported file formats, URL structure - public contracts.
+- Lint, type-check, and CI configuration (`eslint.config.*`, `biome.json`,
+  `analysis_options.yaml`, `ruff.toml`, workflow files) - enforced rules.
 - `CLAUDE.md`, `AGENTS.md`, `README.md`, existing ADRs or design notes -
   decisions already made in prose.
 
@@ -157,12 +172,15 @@ Statuses:
   re-asked on the next run and never filled in by the agent.
 
 First send the Act 0 confirmation of code-only `decided` rows, if any; a
-row the user flags becomes `decide now`. Then ask the `decide now` items one
-per message, in table order so the ones others depend on come first, using
+row the user flags becomes `decide now`. Split the `decide now` items into
+intent and expertise. Expertise items are settled from their source and
+shown together in one message, not asked. Then ask the intent items one per
+message, in table order so the ones others depend on come first, using
 default plus reversal cost:
 
-> Settings will live on the device, since the product is personal and login
-> is optional. If account sync is ever needed, that is one migration. OK?
+> If you switch phones, your settings start over on the new one. Adding
+> sync later is possible but means moving everyone's saved settings once.
+> Is starting over on a new phone fine for now?
 
 After an answer, derive the next default from it. Put two items in the same
 message only when neither default depends on the other's answer. A new
@@ -195,13 +213,21 @@ task. Do not resolve it here.
 3. **Write `docs/onward.md`** from the template below. Keep it to one page.
    If the project keeps design notes elsewhere and the user prefers that
    location, use it instead and say so.
-4. **Point the host at it.** Add one line to the project instruction file the
+4. **Enforced rules.** For each lint or CI rule that encodes a project
+   convention (not a stock preset), record three things in the user's
+   words: the problem it prevents, its source, and when an exception is
+   allowed. A rule whose problem nobody can state stays a warning, not an
+   error, until someone can; an enforced rule nobody understands gets
+   bypassed, and nobody can tell whether the bypass was wrong. Exceptions
+   use a disable comment with a stated reason; prefer configuring the tool
+   to reject reasonless or unused disables.
+5. **Point the host at it.** Add one line to the project instruction file the
    current host reads - `CLAUDE.md` in Claude Code, `AGENTS.md` in Codex - and
    to both only if the project already has both:
    `Read docs/onward.md before changing shared code, data structures, or public contracts.`
    Do not create the other host's file.
-5. **Report** what was decided, what is deferred with its trigger, and what
-   is still `open`.
+6. **Report** what was decided and by whom (user, a named source, or agent
+   default), what is deferred with its trigger, and what is still `open`.
 
 ## Output template
 
@@ -228,11 +254,15 @@ task. Do not resolve it here.
 <one reference product or three adjectives>
 
 ## Expensive decisions
-| area | status | choice | reversal cost if wrong | revisit when |
-|---|---|---|---|---|
-| data ownership | decided | device-local | one migration to account sync | first multi-device request |
-| billing unit | deferred | - | - | before first paid user |
-| multi-tenancy | n/a | personal product | - | - |
+| area | status | choice | source | reversal cost if wrong | revisit when |
+|---|---|---|---|---|---|
+| data ownership | decided | device-local | user | one migration to account sync | first multi-device request |
+| state management | decided | local state + context | docs: react.dev "Choosing the State Structure" | refactor per screen | first cross-screen state |
+| billing unit | deferred | - | - | - | before first paid user |
+| multi-tenancy | n/a | personal product | - | - | - |
+
+`source` is `user`, `docs: <where>`, `code` (confirmed in Act 0), or
+`agent default`. An `agent default` row has not been checked by anyone.
 | data schema | open | - | - | next spec run |
 
 When a decision changes, keep the row and add `was: <old> (<date>, <reason>)`
@@ -246,6 +276,11 @@ in the choice cell. Do not delete history.
 
 Planned shared elements live here from first use. Everything else starts
 local and is assessed for promotion at its second real use.
+
+## Enforced rules
+| rule | where | prevents (in plain words) | source | exception allowed when |
+|---|---|---|---|---|
+| no setState inside useEffect | eslint.config.js, no-restricted-syntax | screens flashing wrong values and extra re-renders | docs: react.dev "You Might Not Need an Effect" | syncing with something outside React, with a reason comment |
 
 ## Deliberately unspecified
 - <area left to the implementer>

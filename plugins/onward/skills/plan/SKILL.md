@@ -21,10 +21,21 @@ works; this skill does not implement, review, or verify.
   basis.
 - **Using a decision is free; changing one is not.** Building on a recorded
   choice needs no question. Introducing or altering one does.
-- **Default plus reversal cost.** For any new expensive decision, propose one
+- **Ask only what the user can answer.** The user may not know this stack.
+  Every open decision is one of two kinds:
+  - *Intent* - what matters, who uses it, what must never be lost, what may
+    break. Ask the user; they are the expert here. Phrase it as a
+    consequence in their world, with no jargon: not "device or account
+    storage?" but "if you switch phones, is it fine that settings reset?"
+  - *Expertise* - which pattern, library, or structure. Do not ask. Follow
+    the framework's official documentation or the ecosystem default, name
+    that source, prefer the more reversible option when sources disagree,
+    and show the choice in one line so the user can object. If no source
+    exists, record it as `agent default`, which means nobody has checked it.
+- **Default plus reversal cost.** For a new intent decision, propose one
   default grounded in the canon, state in one clause what reversing it would
-  cost, and ask for confirmation. Lay out alternatives only if the user
-  declines or the alternatives are genuinely close.
+  cost in the user's terms, and ask for confirmation. Lay out alternatives
+  only if the user declines or the alternatives are genuinely close.
 - **Proportion.** A one-line note for a one-line change. Do not produce the
   full template for work that touches nothing shared.
 - **Chat, not files.** Write the note in the conversation. Save it to a file
@@ -65,12 +76,14 @@ change. An area the canon marks `open` or `deferred` counts as new if this
 change would start relying on it. If none, say "no new expensive
 decisions".
 
-Otherwise list the areas in one line, then ask about them one per message,
-starting with the one the others depend on (ownership or tenancy before
-schema, schema before contracts). Each message is one default plus reversal
-cost. After an answer, derive the next default from it. Put two decisions in
-the same message only when neither default depends on the other's answer.
-Record each confirmed decision in the canon's decisions table.
+Otherwise list the areas in one line and split them into intent and
+expertise. Settle expertise ones from their source and show them in one
+line each. Ask intent ones one per message, starting with the one the others
+depend on (ownership or tenancy before schema, schema before contracts).
+Each message is one default plus reversal cost. After an answer, derive the
+next default from it. Put two decisions in the same message only when
+neither default depends on the other's answer. Record each decision in the
+canon's decisions table with its source.
 
 ## Step 3: Blast radius
 
@@ -100,6 +113,14 @@ not exist:
   Similar appearance alone does not justify an abstraction.
 - If this change is that second real use and the user agrees to promote, add
   the element to the canon's shared foundations table.
+
+Check the canon's enforced rules that apply to the touched files and name
+them. If the change sets a convention later code should follow, propose a
+lint rule for it instead of a prose note, but only with the three things
+the canon requires (the problem in plain words, the source, when an
+exception is allowed); without them, note the convention and do not enforce
+it. A new rule is a shared foundation: it lands before the code that must
+follow it.
 
 If the change creates or modifies a shared foundation, order the work so the
 foundation lands before its first consumer. Consumers built ahead of the
@@ -132,10 +153,12 @@ remember. Shape:
 ```markdown
 **Class:** fits
 
-**Expensive decisions:** none new / <area>: <choice> (reversal: <cost>) - confirmed, recorded in canon
+**Expensive decisions:** none new / <area>: <choice> (reversal: <cost>) - confirmed by user | from <source> | agent default; recorded in canon
 
 **Blast radius:**
 - <thing changed> -> <consumer>, <consumer>, <consumer>
+
+**Rules:** <rule> applies to <files> / new rule <rule> (prevents <problem>, source <source>)
 
 **Reuse:**
 - <SharedModal> from src/components/Modal.tsx
