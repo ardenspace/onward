@@ -32,6 +32,9 @@ works; this skill does not implement, review, or verify.
     that source, prefer the more reversible option when sources disagree,
     and show the choice in one line so the user can object. If no source
     exists, record it as `agent default`, which means nobody has checked it.
+    The user not objecting never turns an expertise choice into `user`.
+  Never ask the user to confirm a technical reason ("is that why this rule
+  exists?"); an "OK" there records a guess as their judgment.
 - **Default plus reversal cost.** For a new intent decision, propose one
   default grounded in the canon, state in one clause what reversing it would
   cost in the user's terms, and ask for confirmation. Lay out alternatives

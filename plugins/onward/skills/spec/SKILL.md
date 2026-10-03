@@ -33,6 +33,9 @@ choices, silent at the cheap ones.
     that source, prefer the more reversible option when sources disagree,
     and show the choice in one line so the user can object. If no source
     exists, record it as `agent default`, which means nobody has checked it.
+    The user not objecting never turns an expertise choice into `user`.
+  Never ask the user to confirm a technical reason ("is that why this rule
+  exists?"); an "OK" there records a guess as their judgment.
 - **Default plus reversal cost.** When an intent question is open, propose
   one default grounded in the world picture, state in one clause what
   reversing it later would cost in the user's terms, and ask for
@@ -79,8 +82,13 @@ below:
 Note what you found. A finding stated in prose (README, PRD, ADR, design
 notes) becomes a `decided` row or a shared foundation entry without a
 question. A finding only the code shows may have been decided by accident:
-in Act 2, show all of those in one message as proposed `decided` rows and ask
-which, if any, were not deliberate. A row the user flags becomes `decide now`.
+in Act 2, show them as proposed `decided` rows, split the same way as open
+decisions. Rows with a consequence the user can judge (data that can be
+lost, who can see what, what breaks on another device) are stated as that
+consequence and the user is asked which were not deliberate; a flagged row
+becomes `decide now`. Rows that are only technical (framework, state
+pattern, build tool) are listed separately as settled from `code`, not
+asked; never put both kinds in one opt-out list.
 A new project with no code skips this act.
 
 ## Act 1: The world
@@ -206,21 +214,26 @@ task. Do not resolve it here.
    in the file: elements planned as shared live in the shared location from
    first use; anything else starts local and is assessed for promotion at its
    second real use. Similar appearance alone does not justify an abstraction.
-2. **Deliberately unspecified.** Propose the list of things the file will not
+2. **Enforced rules.** For each lint or CI rule that encodes a project
+   convention (not a stock preset), record three things in plain words: the
+   problem it prevents, its source, and when an exception is allowed. The
+   reason comes from a source, not from the user: the rule's own message,
+   a linked doc, a commit or ADR, or the framework's documentation. Record
+   that source (`docs: ...`, `commit ...`), not `user`. If no source states
+   the problem, recommend lowering the rule to a warning and add "why does
+   this rule exist?" under `## Open` for whoever added it; do not invent a
+   reason. An enforced rule nobody understands gets bypassed, and nobody can
+   tell whether the bypass was wrong. Exceptions use a disable comment with
+   a stated reason; prefer configuring the tool to reject reasonless or
+   unused disables. Do not change lint configuration here; note it as a
+   separate task.
+3. **Deliberately unspecified.** Propose the list of things the file will not
    constrain - internal state shapes, helper structure, non-shared endpoint
    details, copy tone - and let the user glance at it. This tells future
    implementers where they are free.
-3. **Write `docs/onward.md`** from the template below. Keep it to one page.
+4. **Write `docs/onward.md`** from the template below. Keep it to one page.
    If the project keeps design notes elsewhere and the user prefers that
    location, use it instead and say so.
-4. **Enforced rules.** For each lint or CI rule that encodes a project
-   convention (not a stock preset), record three things in the user's
-   words: the problem it prevents, its source, and when an exception is
-   allowed. A rule whose problem nobody can state stays a warning, not an
-   error, until someone can; an enforced rule nobody understands gets
-   bypassed, and nobody can tell whether the bypass was wrong. Exceptions
-   use a disable comment with a stated reason; prefer configuring the tool
-   to reject reasonless or unused disables.
 5. **Point the host at it.** Add one line to the project instruction file the
    current host reads - `CLAUDE.md` in Claude Code, `AGENTS.md` in Codex - and
    to both only if the project already has both:
