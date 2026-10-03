@@ -1,0 +1,5 @@
+interface:
+  display_name: "Onward check"
+  short_description: "Check a finished change against the canon: rerun Done when, find undeclared decisions, report in plain words"
+policy:
+  allow_implicit_invocation: false
