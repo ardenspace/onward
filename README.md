@@ -97,7 +97,7 @@ Onward is the successor to [wellbegun](https://github.com/ardenspace/wellbegun),
 
 Kept from wellbegun: the one-way-door framing, the "deliberately unspecified" section, the request triage before planning, the non-goals question, the shared-element promotion rule, foundation-before-consumer ordering, a few blind-spot probes, and keeping superseded decisions visible. Dropped: S/M/L/XL grades, draft/approved status, decision ledgers, registry files, hooks, step contracts, gates, cycles.
 
-Behavioral effect is unverified. The next step is to use it on a small real change and see whether the questions land.
+Small synthetic experiments are recorded in [docs/2026-10-03-verification-experiments.md](docs/2026-10-03-verification-experiments.md): on small changes the implementing model already verifies itself well, so `check` looks for drift from the canon and false completion reports rather than hunting bugs. Behavior on real projects is still unverified; the next step is to use it on a few real changes.
 
 ## License
 
