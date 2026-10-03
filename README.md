@@ -2,9 +2,9 @@
 
 Build with the next change in mind.
 
-Agents ship an MVP fast. What costs you afterwards is everything the MVP quietly decided: a schema that now has to change in the backend, the frontend, and the migration at once; a color hardcoded in forty places because nobody found the tokens; a second modal because nobody found the first. Onward puts two short checks in front of that work so the expensive choices get made on purpose.
+Agents ship an MVP fast. What costs you afterwards is everything the MVP quietly decided: a schema that now has to change in the backend, the frontend, and the migration at once; a color hardcoded in forty places because nobody found the tokens; a second modal because nobody found the first. Onward puts two short checks in front of that work so the expensive choices get made on purpose, and one after it so drift from those choices gets caught.
 
-It is two skills, no runtime, no hooks, no review orchestration.
+It is three skills, no runtime, no hooks, no review orchestration.
 
 ## Install
 
@@ -22,7 +22,7 @@ codex plugin marketplace add https://github.com/ardenspace/onward.git
 codex plugin add onward@onward
 ```
 
-Both hosts load the same two skills from `plugins/onward/`. They are explicitly invoked only; neither host applies them to ordinary requests on its own.
+Both hosts load the same three skills from `plugins/onward/`. They are explicitly invoked only; neither host applies them to ordinary requests on its own.
 
 ## Use
 
@@ -40,7 +40,14 @@ Before each change, check it against the canon:
 $onward:plan Add a theme preview to the settings screen.
 ```
 
-Then implement the way you normally do. Onward stops where implementation starts.
+Then implement the way you normally do. Onward does not run or steer implementation.
+
+After implementing, check the result against the canon, ideally from a fresh session:
+
+```text
+/onward:check
+$onward:check
+```
 
 ## What `spec` does
 
@@ -68,9 +75,19 @@ Given a change request, it reads the canon and answers five things in chat:
 4. **Reuse and order.** Which shared elements to use, what to build local, and that a new shared foundation lands before its first consumer.
 5. **Done when.** One to three observable completion criteria, fixed before implementation, that the implementer checks once at the end. Where the change touches stored data or other consumers, one of them says those still work.
 
+## What `check` does
+
+It looks at a finished change once, read-only, and reports in chat:
+
+1. **Done when, rerun.** Each criterion is run again rather than taken from the implementer's report.
+2. **Canon drift.** Recorded decisions altered, public contracts broken, shared foundations bypassed, enforced rules weakened, and new expensive decisions made without a canon row.
+3. **For you.** What now works and what might break, in plain words, before the evidence.
+
+It is not a bug hunt: the implementing agent already tests ordinary correctness and is usually right. It does not fix, loop, or keep rounds. Findings must cite a command or a file and line, and only breaking a criterion or the canon blocks.
+
 ## What Onward does not do
 
-- It does not implement, review, or verify. Use whatever your host already provides for that.
+- It does not implement or run anything. `check` verifies one finished change against the canon and its criteria; general code review is your host's.
 - It does not create registries, ledgers, status files, or process documents beyond the one canon page.
 - It does not enforce anything during implementation. An agent that knows the tokens exist and hardcodes anyway is a review problem, not a planning problem.
 
