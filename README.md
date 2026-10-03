@@ -58,12 +58,13 @@ The result is one page, `docs/onward.md`, plus one line in `CLAUDE.md` or `AGENT
 
 ## What `plan` does
 
-Given a change request, it reads the canon and answers four things in chat:
+Given a change request, it reads the canon and answers five things in chat:
 
 1. **Class.** Too small to plan, fits the world, or conflicts with it. A conflict stops and asks whether the canon should change.
 2. **Expensive decisions** this change newly introduces or alters. Using an existing decision is free; changing one gets the default-plus-reversal-cost question, and the answer is written back into the canon so the next plan does not ask again.
 3. **Blast radius.** For each thing modified, the consumers that must change with it, found by search and named individually.
 4. **Reuse and order.** Which shared elements to use, what to build local, and that a new shared foundation lands before its first consumer.
+5. **Done when.** One to three observable completion criteria, fixed before implementation, that the implementer checks once at the end. Where the change touches stored data or other consumers, one of them says those still work.
 
 ## What Onward does not do
 

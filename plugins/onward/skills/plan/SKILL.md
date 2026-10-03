@@ -6,9 +6,10 @@ disable-model-invocation: true
 
 # onward:plan - check a change before building it
 
-Take one change request and answer four things before any code is written:
+Take one change request and answer five things before any code is written:
 does it fit the world, which expensive decisions does it touch, how far does
-it spread, and what already exists that it should reuse. The output is a
+it spread, what already exists that it should reuse, and how anyone will know
+it is done. The output is a
 short note in chat. Implementation then proceeds the way the host normally
 works; this skill does not implement, review, or verify.
 
@@ -104,6 +105,25 @@ If the change creates or modifies a shared foundation, order the work so the
 foundation lands before its first consumer. Consumers built ahead of the
 foundation acquire temporary hardcoding that later has to be removed.
 
+## Step 5: Done when
+
+Write one to three observable completion criteria, fixed before
+implementation. Prefer ones a command or a visible state can decide: a test
+or script that must pass, a screen that must show something. Derive them
+from the blast radius: when stored data or a consumer is affected, one
+criterion says it still works (existing rows still load, every listed
+consumer still renders). A criterion only judgment can decide ("never
+leaks", "is secure") gets narrowed until something observable can decide
+it; if it cannot be narrowed, say so.
+
+Use criteria the user already gave instead of restating them. Do not invent
+a test framework to make a criterion executable; a manual check of a visible
+state is fine.
+
+After implementation, the implementer checks each criterion once and
+reports pass or fail with what was run. A failed criterion means not done.
+This skill does not run the checks or add a reviewer.
+
 ## Output
 
 Keep it to what the user needs to approve and what the implementer needs to
@@ -122,7 +142,11 @@ remember. Shape:
 - new <ThemePreview>, local to settings; promote at second use
 
 **Order:** <foundation> first, then <consumer>, then <consumer>
+
+**Done when:**
+- <command or visible state> -> <expected result>
+- <existing data or consumer> still <works>, checked by <how>
 ```
 
-Then hand off: "Plan done. Implement as usual." If any decision was declined
+Then hand off: "Plan done. Implement as usual, then check each Done when." If any decision was declined
 or left open, say what is blocked on it and what can proceed regardless.
