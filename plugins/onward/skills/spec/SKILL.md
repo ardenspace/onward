@@ -166,8 +166,9 @@ asking anything:
 Statuses:
 
 - **decided** - existing notes answer it: record the choice and ask nothing.
-  If only the code answers it, it goes into the single Act 0 confirmation
-  message below before it is recorded as `decided`.
+  If only the code answers it, it is confirmed first as Act 0 describes
+  (consequences asked, technical items shown) before it is recorded as
+  `decided`.
 - **n/a** - does not apply to this product (a CLI has no multi-tenancy).
   Record with a one-clause reason.
 - **decide now** - the MVP's code will bake this in soon, so leaving it open
@@ -179,8 +180,10 @@ Statuses:
   with `-` as the choice and repeat the question under `## Open`; it is
   re-asked on the next run and never filled in by the agent.
 
-First send the Act 0 confirmation of code-only `decided` rows, if any; a
-row the user flags becomes `decide now`. Split the `decide now` items into
+First handle the code-only `decided` rows as Act 0 describes: ask about
+the rows with a consequence the user can judge, and show the technical ones
+as settled from `code`; a row the user flags becomes `decide now`. Split the
+`decide now` items into
 intent and expertise. Expertise items are settled from their source and
 shown together in one message, not asked. Then ask the intent items one per
 message, in table order so the ones others depend on come first, using
