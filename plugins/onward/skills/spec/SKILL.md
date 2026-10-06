@@ -273,10 +273,10 @@ task. Do not resolve it here.
 | state management | decided | local state + context | docs: react.dev "Choosing the State Structure" | refactor per screen | first cross-screen state |
 | billing unit | deferred | - | - | - | before first paid user |
 | multi-tenancy | n/a | personal product | - | - | - |
+| data schema | open | - | - | - | next spec run |
 
 `source` is `user`, `docs: <where>`, `code` (confirmed in Act 0), or
 `agent default`. An `agent default` row has not been checked by anyone.
-| data schema | open | - | - | next spec run |
 
 When a decision changes, keep the row and add `was: <old> (<date>, <reason>)`
 in the choice cell. Do not delete history.
