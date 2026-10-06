@@ -1,6 +1,6 @@
 ---
 name: check
-description: After a change is implemented, check the result once against the project's canon in docs/onward.md - rerun the Done when criteria, find expensive decisions the change made without declaring them, and report in words the user can judge. Use only when the user explicitly invokes this skill; never apply it automatically.
+description: Use only when the user explicitly invokes this skill on a finished change to check it against the canon in docs/onward.md and its Done when criteria. Never apply it automatically.
 disable-model-invocation: true
 ---
 
@@ -34,10 +34,12 @@ before it started.
   better designs, extra tests you would have written - goes under "not
   blocking" in one line each, or is left out.
 - **Fresh eyes when possible.** Prefer running in a context that did not
-  implement the change: a new session or a subagent. If this context did the
-  implementation, say so in the report; it is still useful for rerunning
-  criteria and comparing against the canon, but it is not an independent
-  review.
+  implement the change: a new session, or a subagent whose prompt contains
+  this skill's full text, the path to the canon, the diff base, and the
+  Done when criteria, since a subagent cannot invoke this skill itself. If
+  this context did the implementation, say so in the report; it is still
+  useful for rerunning criteria and comparing against the canon, but it is
+  not an independent review.
 - **Proportion.** A one-line change gets a one-line report.
 
 ## Step 1: Gather

@@ -4,7 +4,7 @@
     "name": "ardenspace",
     "email": "ardensdevspace@gmail.com"
   },
-  "description": "A dual Claude Code and Codex marketplace for Onward: spec and plan skills that keep an MVP cheap to change.",
+  "description": "A dual Claude Code and Codex marketplace for Onward: spec, plan, and check skills that keep an MVP cheap to change.",
   "plugins": [
     {
       "name": "onward",
