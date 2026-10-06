@@ -34,10 +34,12 @@ before it started.
   better designs, extra tests you would have written - goes under "not
   blocking" in one line each, or is left out.
 - **Fresh eyes when possible.** Prefer running in a context that did not
-  implement the change: a new session or a subagent. If this context did the
-  implementation, say so in the report; it is still useful for rerunning
-  criteria and comparing against the canon, but it is not an independent
-  review.
+  implement the change: a new session, or a subagent whose prompt contains
+  this skill's full text, the path to the canon, the diff base, and the
+  Done when criteria, since a subagent cannot invoke this skill itself. If
+  this context did the implementation, say so in the report; it is still
+  useful for rerunning criteria and comparing against the canon, but it is
+  not an independent review.
 - **Proportion.** A one-line change gets a one-line report.
 
 ## Step 1: Gather
