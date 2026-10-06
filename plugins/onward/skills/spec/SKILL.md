@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Establish a project's canon once - the product in one picture, the decisions that are expensive to reverse, and where shared foundations live - as one short docs/onward.md. Use only when the user explicitly invokes this skill; never apply it automatically.
+description: Use only when the user explicitly invokes this skill to establish or resume a project's canon in docs/onward.md. Never apply it automatically.
 disable-model-invocation: true
 ---
 

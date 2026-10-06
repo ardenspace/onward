@@ -1,6 +1,6 @@
 ---
 name: check
-description: After a change is implemented, check the result once against the project's canon in docs/onward.md - rerun the Done when criteria, find expensive decisions the change made without declaring them, and report in words the user can judge. Use only when the user explicitly invokes this skill; never apply it automatically.
+description: Use only when the user explicitly invokes this skill on a finished change to check it against the canon in docs/onward.md and its Done when criteria. Never apply it automatically.
 disable-model-invocation: true
 ---
 
