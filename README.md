@@ -42,11 +42,11 @@ $onward:plan Add a theme preview to the settings screen.
 
 Then implement the way you normally do. Onward does not run or steer implementation.
 
-After implementing, check the result against the canon, ideally from a fresh session:
+After implementing, check the result against the canon, ideally from a fresh session with the plan's Done when block pasted in. Without it, `check` derives criteria from the diff and says so.
 
 ```text
-/onward:check
-$onward:check
+/onward:check  <paste the Done when block from the plan>
+$onward:check  <paste the Done when block from the plan>
 ```
 
 ## What `spec` does

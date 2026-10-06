@@ -174,5 +174,7 @@ remember. Shape:
 - <existing data or consumer> still <works>, checked by <how>
 ```
 
-Then hand off: "Plan done. Implement as usual, then check each Done when." If any decision was declined
-or left open, say what is blocked on it and what can proceed regardless.
+Then hand off: "Plan done. Implement as usual, then check each Done when.
+Keep the Done when block; `onward:check` in another session needs it pasted
+in." If any decision was declined or left open, say what is blocked on it
+and what can proceed regardless.
